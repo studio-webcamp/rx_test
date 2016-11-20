@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse drag</title>
+    <style>
+        div {
+            width: 50%;
+            margin: auto;
+            border: 1px solid;
+            position: relative;
+            height: 500px;
+        }
+
+        span {
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span></span>
+</div>
+
+<script>
+    let drag = false;
+    var span = document.querySelector('span');
+    var element = document.querySelector('div');
+    document.addEventListener('mouseup', function (e) {
+        drag = false;
+    });
+    element.addEventListener('mousemove', function (e) {
+        if (drag) {
+            span.style.left = e.x - element.offsetLeft + "px";
+            span.style.top = e.y - element.offsetTop + "px";
+            console.log(e.target);
+        }
+    });
+    span.addEventListener('mousedown', function (e) {
+        drag = true;
+    });
+</script>
+</body>
+</html>
